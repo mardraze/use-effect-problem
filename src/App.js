@@ -4,19 +4,20 @@ function App() {
   const [count, setCount] = useState(0);
   const [log, setLog] = useState([]);
 
+  
   useEffect(() => {
-    const onCustomEvent = function () {
-      const d = new Date() // Anything that changes
-      setCount(d.getTime())
-    };
-    logEvent("addEventListener");
-    document.addEventListener("custom-event", onCustomEvent);
+    const onCustomEvent = function(){
+      setCount(count+1)
+    }
+    logEvent('addEventListener')
+    document.addEventListener('custom-event', onCustomEvent)
 
     return () => {
-      logEvent("removeEventListener");
-      document.removeEventListener("custom-event", onCustomEvent);
-    };
-  }, []);
+      logEvent('removeEventListener')
+      document.removeEventListener('custom-event', onCustomEvent)
+    }
+  }, [count, setCount])
+
 
   function dispatchEvent(){
     document.dispatchEvent(new CustomEvent('custom-event'))
