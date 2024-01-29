@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import {useSharedCounter} from "./sharedCounter";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCountValue] = useState(0);
   const [log, setLog] = useState([]);
+  const sharedCounter = useSharedCounter();
 
   useEffect(() => {
     const onCustomEvent = function () {
-      const d = new Date();
-      setCount(d.getTime());
+      setCount();
     };
     logEvent("addEventListener");
     document.addEventListener("custom-event", onCustomEvent);
@@ -23,6 +24,11 @@ function App() {
     document.dispatchEvent(new CustomEvent('custom-event'))
   }
 
+  function setCount(){
+    sharedCounter.value = sharedCounter.value + 1;
+    setCountValue(sharedCounter.value);
+  }
+  
   function logEvent(msg){
     console.log(msg)
     setLog([...log, msg])
