@@ -39,7 +39,7 @@ function App() {
       <div>I need to update a variable, for example counter, from buttons and from WebSockets.
          How to do it in react? Currently I use "useEffect" hook, but I don't think it's a correct way, 
          because I'd like to avoid addEventListener and removeEventListener on every counter change.
-        Does anyone know a solution?</div>
+        Does anyone know a solution? EDIT: @see solutions branch</div>
       <div>count value is {count}</div>
       <div>Log (see console also):</div>
       {log.map((msg, i) => <div key={i}>{msg}</div>)}
